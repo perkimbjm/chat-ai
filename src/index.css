@@ -1,0 +1,249 @@
+/* Container utama */
+.app-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  margin-bottom: 20px; /* Adjust the space between the h1 and the chat-app */
+  font-size: 1.25rem; /* Optional: Adjust the font size */
+  text-align: center; /* Optional: Center-align the text */
+}
+
+h1::before {
+  content: '';
+  display: inline-block;
+  background: url(/gemini.svg);
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}
+
+
+
+
+/* Chat app */
+.chat-app {
+  width: 100%;
+  max-width: 1024px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+/* Chat window */
+.chat-window {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  word-wrap: break-word; /* Memastikan teks panjang di-wrap */
+  overflow-wrap: break-word; /* Alternatif untuk word-wrap */
+}
+
+/* Message styling */
+.message {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  word-wrap: break-word; /* Memastikan teks panjang di-wrap */
+  overflow-wrap: break-word; /* Alternatif untuk word-wrap */
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #daf8e3;
+  border-radius: 10px 10px 0 10px;
+  padding: 10px;
+  margin-right: 10px;
+  max-width: 80%;
+}
+
+.message.api {
+  align-self: flex-start;
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 0;
+  padding: 10px;
+  margin-left: 10px;
+  max-width: 80%;
+}
+
+/* Informasi pesan */
+.message-info {
+  font-size: 0.8rem;
+  color: #888888;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+
+.message-timestamp {
+  font-style: italic;
+}
+
+.message-text {
+  white-space: pre-wrap;
+}
+
+/* Chat input */
+.chat-input {
+  display: flex;
+  align-items: flex-end; /* Agar textarea dan button berada di bagian bawah */
+  position: relative; /* Mengatur posisi relative untuk kontainer */
+  padding: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 20px; /* Bulatkan sudut */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+}
+
+.chat-input textarea {
+  padding: 8px 25px 8px 40px;
+  border-radius: 20px; /* Bulatkan sudut */
+  border: 1px solid #e0e0e0;
+  outline: none;
+  resize: none; /* Nonaktifkan resize manual */
+  overflow-y: auto; /* Tambahkan scroll jika diperlukan */
+  max-height: 100px; /* Batasi tinggi maksimal textarea */
+  width: 100%; /* Lebar 100% dari kontainer */
+  font-size: 1rem; /* Gaya huruf sama dengan input */
+  line-height: 1.5; /* Jarak antar baris teks */
+}
+
+#send {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  background-color: #25D366; /* Warna hijau seperti WhatsApp */
+  color: white;
+  padding: 15px; /* Ukuran padding yang lebih besar untuk lingkaran */
+  border: none;
+  border-radius: 50%; /* Membuat lingkaran sempurna */
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+#send:hover {
+  background-color: #128C7E; /* Warna hijau lebih gelap saat hover */
+}
+
+#upload {
+  position: absolute; /* Menempatkan tombol secara absolut */
+  left: 20px; /* Jarak dari kanan kontainer */
+  bottom: 35px; /* Jarak dari bawah kontainer */
+  background-color: transparent;
+  color: rgb(87, 87, 87);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s; /* Animasi saat hover */
+  font-size: 1.4rem;
+  rotate: -45deg;
+}
+
+#upload:hover {
+  color: rgb(65, 65, 65);
+}
+
+.user-message {
+  background-color: #DCF8C6;
+  align-self: flex-end;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.bot-message {
+  align-self: flex-start;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+}
+
+.typing-message {
+  color: rgb(247, 11, 11);
+  font-style: italic;
+}
+
+
+.tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%; /* Posisikan tooltip di atas ikon */
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#upload:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.typing-indicator {
+  font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+}
+
+.typing-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  margin-right: 5px;
+  animation: typing-blink 1.5s infinite;
+}
+
+.typing-indicator::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888;
+  margin-left: 3px;
+  animation: typing-blink 1.5s infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes typing-blink {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
+@media (max-width: 600px) {
+  .chat-app {
+    width: 90%; /* Lebar untuk tampilan mobile */
+    height: 90vh; /* Tinggi untuk tampilan mobile */
+  }
+}
